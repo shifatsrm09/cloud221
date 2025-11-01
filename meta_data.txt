@@ -1,67 +1,62 @@
-import java.io.*;
 import java.util.*;
 
-public class Solution {
-    static class Pair {
-        int value, index;
-        public Pair(String v, int i) {
-            this.value = Integer.parseInt(v);
-            this.index = i;
+public class MergeSort {
+    
+    public static int[] merge(int[] a, int[] b) {
+        // a and b are two sorted arrays
+        // merge function will return a sorted array after merging a and b
+        int[] result = new int[a.length + b.length];
+        int i = 0, j = 0, k = 0;
+        
+        // Compare elements from both arrays and add the smaller one to result
+        while (i < a.length && j < b.length) {
+            if (a[i] <= b[j]) {
+                result[k++] = a[i++];
+            } else {
+                result[k++] = b[j++];
+            }
+        }
+        
+        // Add remaining elements from a (if any)
+        while (i < a.length) {
+            result[k++] = a[i++];
+        }
+        
+        // Add remaining elements from b (if any)
+        while (j < b.length) {
+            result[k++] = b[j++];
+        }
+        
+        return result;
+    }
+    
+    public static int[] mergeSort(int[] arr) {
+        if (arr.length <= 1) {
+            return arr;
+        } else {
+            int mid = arr.length / 2;
+            int[] a1 = mergeSort(Arrays.copyOfRange(arr, 0, mid));  // left half
+            int[] a2 = mergeSort(Arrays.copyOfRange(arr, mid, arr.length));  // right half
+            return merge(a1, a2);
         }
     }
-
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int T = Integer.parseInt(br.readLine());
-
-        for (int t = 0; t < T; t++) {
-            String[] input = br.readLine().split(" ");
-            int n = Integer.parseInt(input[0]);
-            int s = Integer.parseInt(input[1]);
-
-            Pair[] pairs = new Pair[n];
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < n; j++) {
-                pairs[j] = new Pair(st.nextToken(), j + 1);
-            }
-
-            Arrays.sort(pairs, Comparator.comparingInt(a -> a.value));
-
-            boolean found = false;
-
-            for (int j = 0; j < n; j++) {
-                int start = 0, end = n - 1;
-
-                while (start < end) {
-                    if (start == j) { start++; continue; }
-                    if (end == j) { end--; continue; }
-
-                    int sum = pairs[j].value + pairs[start].value + pairs[end].value;
-
-                    if (sum == s) {
-                        bw.write(pairs[j].index + " " + pairs[start].index + " " + pairs[end].index);
-                        bw.newLine();
-                        found = true;
-                        break;
-                    } else if (sum < s) {
-                        start++;
-                    } else {
-                        end--;
-                    }
-                }
-
-                if (found) break;
-            }
-
-            if (!found) {
-                bw.write("-1");
-                bw.newLine();
-            }
+    
+    // Helper method to print array
+    public static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
         }
-
-        bw.flush();
-        br.close();
-        bw.close();
+        System.out.println();
+    }
+    
+    // Main method to test the implementation
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        System.out.print("Original array: ");
+        printArray(arr);
+        
+        int[] sortedArr = mergeSort(arr);
+        System.out.print("Sorted array: ");
+        printArray(sortedArr);
     }
 }
