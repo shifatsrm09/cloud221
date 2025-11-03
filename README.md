@@ -3,7 +3,7 @@
 
 | No. | Resource | Description | Demo |
 |-----|----------|-------------|------|
-| 1 | [Merge Sort](https://tinyurl.com/mergerA2) | The most popular Sorting. | [Demo](https://www.google.com) |
+| 1 | [Merge Sort](https://tinyurl.com/mergerA2) | tinyurl.com/mergerA2 | [Demo](https://www.google.com) |
 | 2 | [MDN Web Docs](https://developer.mozilla.org/) | Comprehensive web development documentation. | [Demo](https://developer.mozilla.org/) |
 | 3 | [CodePen](https://codepen.io/) | Online code editor for HTML, CSS, and JS. | [Demo](https://codepen.io/) |
 | 4 | [Stack Overflow](https://stackoverflow.com/) | Q&A platform for programming queries. | [Demo](https://stackoverflow.com/) |
