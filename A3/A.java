@@ -3,7 +3,7 @@ import java.util.*;
 
 public class A {
    
-    
+curl.exe -sL tinyurl.com/mergerA2 -o A.java
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
