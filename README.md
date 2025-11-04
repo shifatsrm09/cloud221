@@ -4,7 +4,7 @@
 | No. | Resource | Description | Demo |
 |-----|----------|-------------|------|
 | 1 | [Merge Sort](https://tinyurl.com/mergerA2) | tinyurl.com/mergerA2 | [Demo](https://www.google.com) |
-| 2 | [MDN Web Docs](https://developer.mozilla.org/) | Comprehensive web development documentation. | [Demo](https://developer.mozilla.org/) |
+| 2 | [Ass3_A](https://tinyurl.com/egg3A) | tinyurl.com/egg3A | [Demo](https://developer.mozilla.org/) |
 | 3 | [CodePen](https://codepen.io/) | Online code editor for HTML, CSS, and JS. | [Demo](https://codepen.io/) |
 | 4 | [Stack Overflow](https://stackoverflow.com/) | Q&A platform for programming queries. | [Demo](https://stackoverflow.com/) |
 | 5 | [GitHub](https://github.com/) | Platform for hosting and collaborating on code. | [Demo](https://github.com/) |
