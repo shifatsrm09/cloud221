@@ -1,6 +1,6 @@
 
 ## 🔗 Quick Access Links
-Cloud: curl.exe -sL tinyurl.com/egg3A
+Cloud: curl.exe -sL tinyurl.com/egg3A </br>
 Local: Copy-Item "J:\A.java" "Solution.java" -Force
 
 | No. | Resource | Description | Demo |
