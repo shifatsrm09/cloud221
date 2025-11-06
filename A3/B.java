@@ -23,9 +23,6 @@ public class B {
             }
             return sum;
         }
-        int queryRange(int l, int r) {
-            return query(r) - query(l - 1);
-        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -35,29 +32,34 @@ public class B {
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) arr[i] = Integer.parseInt(st.nextToken());
 
-        TreeSet<Long> set = new TreeSet<>();
-        for (int i = 0; i < N; i++) {
-            if (arr[i] > 0) set.add((long) arr[i]);
-            set.add((long) arr[i] * arr[i]);
+        // Collect all relevant values (arr[i] and arr[i]^2)
+        long[] vals = new long[2 * N];
+        int idx = 0;
+        for (int x : arr) {
+            vals[idx++] = x;
+            vals[idx++] = 1L * x * x;
         }
 
-        Map<Long, Integer> compress = new HashMap<>();
-        int idx = 1;
-        for (long val : set) compress.put(val, idx++);
+        // Sort and remove duplicates
+        Arrays.sort(vals);
+        int unique = 0;
+        for (int i = 0; i < vals.length; i++) {
+            if (i == 0 || vals[i] != vals[i - 1]) vals[unique++] = vals[i];
+        }
 
-        Fenwick bit = new Fenwick(set.size());
+        // Map value → compressed index
+        Fenwick bit = new Fenwick(unique + 2);
         long count = 0;
 
         for (int j = 0; j < N; j++) {
-            long square = (long) arr[j] * arr[j];
-            int compSquare = compress.get(square);
-
-            int total = bit.query(set.size());
-            int lessOrEqual = bit.query(compSquare);
-            count += (total - lessOrEqual); // numbers > arr[j]^2
+            long sq = 1L * arr[j] * arr[j];
+            int compSq = Arrays.binarySearch(vals, 0, unique, sq) + 1;
+            int total = bit.query(unique);
+            int lessOrEqual = bit.query(compSq);
+            count += total - lessOrEqual;
 
             if (arr[j] > 0) {
-                int compVal = compress.get((long) arr[j]);
+                int compVal = Arrays.binarySearch(vals, 0, unique, arr[j]) + 1;
                 bit.update(compVal, 1);
             }
         }
