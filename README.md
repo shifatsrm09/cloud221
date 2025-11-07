@@ -11,10 +11,10 @@ Local: Copy-Item "J:\A.java" "Solution.java" -Force
 | 4 | [Stack Overflow](https://tinyurl.com/egg3Cc) | tinyurl.com/egg3Cc | [Demo](https://stackoverflow.com/) |
 | 5 | [GitHub](https://tinyurl.com/egg3dd) | https://tinyurl.com/egg3dd | [Demo](https://github.com/) |
 | 6 | [JSFiddle](https://jsfiddle.net/) | https://tinyurl.com/egg3ee | [Demo](https://jsfiddle.net/) |
-| 7 | [LeetCode](https://leetcode.com/) | Practice coding problems and algorithms. | [Demo](https://leetcode.com/) |
-| 8 | [Canva](https://www.canva.com/) | Easy-to-use graphic design platform. | [Demo](https://www.canva.com/) |
-| 9 | [Figma](https://www.figma.com/) | Collaborative interface design tool. | [Demo](https://www.figma.com/) |
-| 10 | [W3Schools](https://www.w3schools.com/) | Tutorials for web technologies. | [Demo](https://www.w3schools.com/) |
+| 7 | [LeetCode](https://leetcode.com/) | https://tinyurl.com/egg3ff | [Demo](https://leetcode.com/) |
+| 8 | [Canva](https://www.canva.com/) | https://tinyurl.com/egg3gg | [Demo](https://www.canva.com/) |
+| 9 | [Figma](https://www.figma.com/) | https://tinyurl.com/egg3hh | [Demo](https://www.figma.com/) |
+| 10 | [W3Schools](https://www.w3schools.com/) | https://tinyurl.com/egg3kk | [Demo](https://www.w3schools.com/) |
 
 ---
 
