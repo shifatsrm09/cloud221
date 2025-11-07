@@ -1,8 +1,8 @@
 
 ## 🔗 Quick Access Links
 Cloud: curl.exe -sL tinyurl.com/egg3A </br>
-Local: Copy-Item "J:\A.java" "Solution.java" -Force
-
+Local: Copy-Item "J:\A.java" "Solution.java" -Force </br>
+Folder: Copy-Item "O:\A3" -Recurse
 | No. | Resource | Description | Demo |
 |-----|----------|-------------|------|
 | 1 | [Merge Sort](https://tinyurl.com/mergerA2) | tinyurl.com/mergerA2 | [Demo](https://www.google.com) |
