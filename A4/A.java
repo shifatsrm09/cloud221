@@ -1,5 +1,3 @@
-
-
 import java.io.*;
 import java.util.StringTokenizer;
 
@@ -14,7 +12,8 @@ public class A {
         
         while (t-->0) {
             inp = new StringTokenizer(br.readLine());
-            int from = Integer.parseInt(inp.nextToken()), to = Integer.parseInt(inp.nextToken()), weight = Integer.parseInt(inp.nextToken());
+            int from = Integer.parseInt(inp.nextToken()),
+            to = Integer.parseInt(inp.nextToken()), weight = Integer.parseInt(inp.nextToken());
             addThat(matrix,from,to,weight);
         }
 

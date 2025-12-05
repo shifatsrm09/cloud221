@@ -1,11 +1,15 @@
 import java.io.*;
 import java.util.*;
 
-public class H {
+public class HH {
 
-    static int gcd(int a, int b) {
+    static long lcm(long a, long b) {
+        return a / gcd(a, b) * b;
+    }
+
+    static long gcd(long a, long b) {
         while (b != 0) {
-            int t = a % b;
+            long t = a % b;
             a = b;
             b = t;
         }
@@ -21,20 +25,25 @@ public class H {
         int N = Integer.parseInt(st.nextToken());
         int Q = Integer.parseInt(st.nextToken());
 
-        // Build adjacency list: for each i store nodes j such that gcd(i, j) = 1
         ArrayList<Integer>[] adj = new ArrayList[N + 1];
         for (int i = 1; i <= N; i++) adj[i] = new ArrayList<>();
 
+        // Build graph using LCM condition
         for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= N; j++) {
-                if (i != j && gcd(i, j) == 1) {
+            for (int j = i + 1; j <= N; j++) {
+                if (lcm(i, j) <= N) {
                     adj[i].add(j);
+                    adj[j].add(i);
                 }
             }
-            Collections.sort(adj[i]); // sort each adjacency list
         }
 
-        // Process queries
+        // Sort adjacency lists
+        for (int i = 1; i <= N; i++) {
+            Collections.sort(adj[i]);
+        }
+
+        // Answer queries
         while (Q-- > 0) {
             st = new StringTokenizer(br.readLine());
             int X = Integer.parseInt(st.nextToken());
