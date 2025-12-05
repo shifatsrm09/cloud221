@@ -1,5 +1,6 @@
 import java.io.*;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class B {
 
@@ -20,7 +21,6 @@ public class B {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        // Read first line: N and M
         String[] first = br.readLine().trim().split(" ");
         int N = Integer.parseInt(first[0]);
         int M = Integer.parseInt(first[1]);
@@ -29,19 +29,22 @@ public class B {
         int[] v = new int[M];
         int[] w = new int[M];
 
-        // Read u array
-        String[] line = br.readLine().trim().split(" ");
-        for (int i = 0; i < M; i++) u[i] = Integer.parseInt(line[i]);
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < M; i++) {
+            u[i] = Integer.parseInt(st.nextToken());
+        }
 
-        // Read v array
-        line = br.readLine().trim().split(" ");
-        for (int i = 0; i < M; i++) v[i] = Integer.parseInt(line[i]);
+        st = new StringTokenizer(br.readLine());
+           for (int i = 0; i < M; i++) {
+            v[i] = Integer.parseInt(st.nextToken());
+        }
 
-        // Read w array
-        line = br.readLine().trim().split(" ");
-        for (int i = 0; i < M; i++) w[i] = Integer.parseInt(line[i]);
+          st = new StringTokenizer(br.readLine());
+           for (int i = 0; i < M; i++) {
+            w[i] = Integer.parseInt(st.nextToken());
+        }
 
-        // Adjacency list heads
+
         Node[] head = new Node[N + 1];
 
         // Build adjacency list (insert at head — O(1))
