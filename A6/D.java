@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class DC {
+public class D {
     static ArrayList<Integer>[] adj;
     static boolean[] visited;
     static int farNode;
