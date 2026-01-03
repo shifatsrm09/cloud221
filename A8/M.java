@@ -1,111 +1,95 @@
 import java.io.*;
 import java.util.*;
 
-public class MaximumSpanningTree {
+public class Main {
 
-    // Union-Find Data Structure
-    static class UnionFind {
+    // Edge representation
+    static class Edge {
+        int u, v;
+        long w;
+
+        Edge(int u, int v, long w) {
+            this.u = u;
+            this.v = v;
+            this.w = w;
+        }
+    }
+
+    // Disjoint Set Union (Union-Find)
+    static class DSU {
         int[] parent, rank;
 
-        UnionFind(int n) {
-            parent = new int[n];
-            rank = new int[n];
-            for (int i = 0; i < n; i++) {
-                parent[i] = i;  // Each node is its own parent initially
+        DSU(int n) {
+            parent = new int[n + 1];
+            rank = new int[n + 1];
+            for (int i = 1; i <= n; i++) {
+                parent[i] = i;
+                rank[i] = 0;
             }
         }
 
-        // Find with path compression
-        int find(int u) {
-            if (parent[u] != u) {
-                parent[u] = find(parent[u]);  // Path compression
-            }
-            return parent[u];
+        int find(int x) {
+            if (parent[x] != x)
+                parent[x] = find(parent[x]); // path compression
+            return parent[x];
         }
 
-        // Union by rank
-        void union(int u, int v) {
-            int rootU = find(u);
-            int rootV = find(v);
-            
-            if (rootU != rootV) {
-                // Union by rank
-                if (rank[rootU] > rank[rootV]) {
-                    parent[rootV] = rootU;
-                } else if (rank[rootU] < rank[rootV]) {
-                    parent[rootU] = rootV;
-                } else {
-                    parent[rootV] = rootU;
-                    rank[rootU]++;
-                }
+        boolean union(int a, int b) {
+            a = find(a);
+            b = find(b);
+            if (a == b) return false;
+
+            if (rank[a] < rank[b]) {
+                parent[a] = b;
+            } else if (rank[a] > rank[b]) {
+                parent[b] = a;
+            } else {
+                parent[b] = a;
+                rank[a]++;
             }
+            return true;
         }
     }
 
-    // Kruskal's Algorithm for Maximum Spanning Tree
-    static int kruskalMaximumSpanningTree(int n, List<int[]> edges) {
-        // Initialize Union-Find structure
-        UnionFind uf = new UnionFind(n);
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder out = new StringBuilder();
 
-        // Sort the edges in descending order of weights
-        edges.sort((a, b) -> Integer.compare(b[0], a[0]));  // Sort by weight in descending order
+        int T = Integer.parseInt(br.readLine().trim());
 
-        int mstWeight = 0;
-        int mstEdges = 0;
+        while (T-- > 0) {
+            String[] first = br.readLine().split(" ");
+            int N = Integer.parseInt(first[0]);
+            int M = Integer.parseInt(first[1]);
 
-        // Process each edge
-        for (int[] edge : edges) {
-            int weight = edge[0];
-            int u = edge[1];
-            int v = edge[2];
+            List<Edge> edges = new ArrayList<>();
 
-            // If u and v are in different sets, include the edge in the MST
-            if (uf.find(u) != uf.find(v)) {
-                uf.union(u, v);
-                mstWeight += weight;
-                mstEdges++;
-                // If we've added n-1 edges, the tree is complete
-                if (mstEdges == n - 1) {
-                    break;
+            for (int i = 0; i < M; i++) {
+                String[] parts = br.readLine().split(" ");
+                int u = Integer.parseInt(parts[0]);
+                int v = Integer.parseInt(parts[1]);
+                long w = Long.parseLong(parts[2]);
+                edges.add(new Edge(u, v, w));
+            }
+
+            // Sort edges by DESCENDING weight
+            edges.sort((a, b) -> Long.compare(b.w, a.w));
+
+            DSU dsu = new DSU(N);
+            long maxWeight = 0;
+            int usedEdges = 0;
+
+            for (Edge e : edges) {
+                if (dsu.union(e.u, e.v)) {
+                    maxWeight += e.w;
+                    usedEdges++;
+                    if (usedEdges == N - 1) break;
                 }
             }
+
+            out.append(maxWeight).append('\n');
         }
 
-        return mstWeight;
-    }
-
-    public static void main(String[] args) throws IOException {
-        // Set up BufferedReader and BufferedWriter for efficient I/O
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-        
-        int t = Integer.parseInt(reader.readLine().trim());  // Number of test cases
-        
-        while (t-- > 0) {
-            // Read N and M
-            String[] nm = reader.readLine().split(" ");
-            int n = Integer.parseInt(nm[0]);  // number of nodes
-            int m = Integer.parseInt(nm[1]);  // number of edges
-            
-            List<int[]> edges = new ArrayList<>();
-            
-            // Read all edges
-            for (int i = 0; i < m; i++) {
-                String[] edgeData = reader.readLine().split(" ");
-                int u = Integer.parseInt(edgeData[0]) - 1;  // Convert to 0-indexed
-                int v = Integer.parseInt(edgeData[1]) - 1;  // Convert to 0-indexed
-                int w = Integer.parseInt(edgeData[2]);
-                edges.add(new int[]{w, u, v});
-            }
-            
-            // Find the weight of the Maximum Spanning Tree
-            int result = kruskalMaximumSpanningTree(n, edges);
-            writer.write(result + "\n");
-        }
-
-        // Flush and close the writer
-        writer.flush();
-        writer.close();
-        reader.close();
+        System.out.print(out.toString());
     }
 }
